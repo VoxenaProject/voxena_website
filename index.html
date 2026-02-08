@@ -55,6 +55,7 @@
            ============================================ */
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         :root {
             --blue: #74a3ff;
@@ -198,12 +199,12 @@
         }
         /* Dark section nav adaptation */
         .nav.dark-mode {
-            background: rgba(8, 11, 31, 0.85);
-            border-bottom-color: rgba(255,255,255,0.04);
+            background: rgba(20, 24, 66, 0.88);
+            border-bottom-color: rgba(255,255,255,0.06);
         }
         .nav.dark-mode.scrolled {
-            background: rgba(8, 11, 31, 0.95);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            background: rgba(20, 24, 66, 0.96);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         .nav.dark-mode .nav-logo svg g { fill: var(--white); transition: fill 0.5s ease; }
 
@@ -460,7 +461,7 @@
            Curved divider — no gradient, just shapes
            ============================================ */
         .transition-bridge {
-            height: 140px;
+            height: 160px;
             background: var(--bg);
             position: relative;
             overflow: hidden;
@@ -474,7 +475,7 @@
             bottom: 0;
             height: 100%;
             border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-            background: var(--navy-deep);
+            background: #171D4A;
         }
         /* Soft violet glow at the contact edge */
         .transition-bridge::before {
@@ -486,7 +487,7 @@
             height: 80px;
             z-index: 1;
             border-radius: 50%;
-            background: radial-gradient(ellipse at 50% 100%, rgba(66,55,196,0.10), transparent 70%);
+            background: radial-gradient(ellipse at 50% 100%, rgba(66,55,196,0.15), transparent 70%);
         }
 
         /* ============================================
@@ -497,11 +498,11 @@
             padding: 80px 32px 160px;
             overflow: hidden;
             background:
-                radial-gradient(ellipse 100% 35% at 50% 0%, rgba(66,55,196,0.09) 0%, transparent 70%),
-                radial-gradient(ellipse 70% 50% at 15% 85%, rgba(239,68,68,0.05) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 40% at 85% 30%, rgba(116,163,255,0.04) 0%, transparent 50%),
-                radial-gradient(ellipse 40% 25% at 50% 50%, rgba(66,55,196,0.03) 0%, transparent 50%),
-                linear-gradient(180deg, var(--navy-deep) 0%, #060918 40%, #050710 100%);
+                radial-gradient(ellipse 100% 35% at 50% 0%, rgba(66,55,196,0.14) 0%, transparent 70%),
+                radial-gradient(ellipse 70% 50% at 15% 85%, rgba(239,68,68,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 85% 30%, rgba(116,163,255,0.07) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 25% at 50% 50%, rgba(66,55,196,0.06) 0%, transparent 50%),
+                linear-gradient(180deg, #171D4A 0%, #141842 40%, #111538 100%);
             color: var(--text-on-dark);
         }
         /* Subtle dot grid texture */
@@ -509,12 +510,16 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
             background-size: 48px 48px;
             pointer-events: none;
         }
 
         .problem-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+        .problem .missed-call { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+        .problem .mc-impact { background: rgba(239,68,68,0.04); }
+        .problem .mc-content { border-left-color: rgba(255,255,255,0.08); }
+        .problem .mc-impact { border-left-color: rgba(255,255,255,0.08); }
 
         .problem-header { text-align: center; margin-bottom: 88px; }
 
@@ -700,8 +705,8 @@
            SECTION TRANSITIONS — World-class bridges
            ═══════════════════════════════════════════ */
         .bridge-dark-to-light {
-            height: 140px;
-            background: #050710;
+            height: 160px;
+            background: #111538;
             position: relative;
             overflow: hidden;
         }
@@ -725,13 +730,25 @@
             height: 80px;
             z-index: 1;
             border-radius: 50%;
-            background: radial-gradient(ellipse at 50% 100%, rgba(66,55,196,0.06), transparent 70%);
+            background: radial-gradient(ellipse at 50% 100%, rgba(66,55,196,0.10), transparent 70%);
         }
         @media (max-width: 960px) {
             .bridge-dark-to-light { height: 100px; }
         }
         @media (max-width: 640px) {
             .bridge-dark-to-light { height: 80px; }
+        }
+
+        /* ── Subtle section separator for premium scroll feel ── */
+        .section-sep {
+            width: 100%;
+            max-width: 900px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(66,55,196,0.07) 25%, rgba(116,163,255,0.09) 50%, rgba(66,55,196,0.07) 75%, transparent 100%);
+            margin: 0 auto;
+        }
+        @media (max-width: 640px) {
+            .section-sep { max-width: 85%; }
         }
 
         /* Footer logo styling */
@@ -741,7 +758,7 @@
 
 
         /* ═══════ SECTION 3: CALCULATOR ═══════ */
-.calculator-section{position:relative;padding:120px 32px 140px;overflow:hidden;background:var(--bg)}
+.calculator-section{position:relative;padding:140px 32px 160px;overflow:hidden;background:var(--bg)}
         .calc-orb{position:absolute;border-radius:50%;pointer-events:none}
         .calc-orb--1{width:500px;height:500px;background:radial-gradient(circle,var(--blue),transparent 40%);top:-100px;right:-100px;opacity:.05}
         .calc-orb--2{width:400px;height:400px;background:radial-gradient(circle,var(--violet),transparent 40%);bottom:-100px;left:-50px;opacity:.03}
@@ -848,7 +865,7 @@
            ============================================ */
         .solution-section {
             position: relative;
-            padding: 120px 32px 140px;
+            padding: 140px 32px 160px;
             overflow: hidden;
             background: var(--bg);
         }
@@ -1341,7 +1358,7 @@
            ============================================ */
         .platform-section {
             position: relative;
-            padding: 120px 32px 140px;
+            padding: 140px 32px 160px;
             overflow: hidden;
             background: var(--bg);
         }
@@ -1761,7 +1778,7 @@
            ============================================ */
         .form-section {
             position: relative;
-            padding: 120px 32px 140px;
+            padding: 140px 32px 160px;
             overflow: hidden;
             background: var(--bg);
         }
@@ -2247,7 +2264,7 @@
            ============================================ */
         .faq-section {
             position: relative;
-            padding: 120px 32px 140px;
+            padding: 140px 32px 140px;
             background: var(--bg);
             overflow: hidden;
         }
@@ -2435,8 +2452,8 @@
         .footer::before {
             content: '';
             position: absolute;
-            top: -120px; left: 0; right: 0;
-            height: 120px;
+            top: -140px; left: 0; right: 0;
+            height: 140px;
             background: linear-gradient(to bottom, var(--bg), var(--navy-deep));
             pointer-events: none;
         }
@@ -3051,6 +3068,8 @@
         </div>
     </section>
 
+    <div class="section-sep" aria-hidden="true"></div>
+
     <!-- ═══════════════════════════════════════════
          SECTION 4: SOLUTION
          ═══════════════════════════════════════════ -->
@@ -3283,6 +3302,8 @@
 
         </div>
     </section>
+
+    <div class="section-sep" aria-hidden="true"></div>
 
     <!-- ═══════════════════════════════════════════
          SECTION 5: PLATFORM
@@ -3536,6 +3557,8 @@
         </div>
     </section>
 
+    <div class="section-sep" aria-hidden="true"></div>
+
     <!-- ═══════════════════════════════════════════
          SECTION 6: FORM
          ═══════════════════════════════════════════ -->
@@ -3738,6 +3761,8 @@
     <!-- ═══════════════════════════════════════════
          SECTION 7: FAQ + FOOTER
          ═══════════════════════════════════════════ -->
+    <div class="section-sep" aria-hidden="true"></div>
+
     <!-- ============================================
          FAQ SECTION
          ============================================ -->
