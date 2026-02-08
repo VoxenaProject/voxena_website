@@ -457,12 +457,36 @@
 
         /* ============================================
            TRANSITION ZONE: HERO → PROBLEM
-           Smooth gradient bridge
+           Curved divider — no gradient, just shapes
            ============================================ */
         .transition-bridge {
-            height: 120px;
-            background: linear-gradient(180deg, var(--bg) 0%, var(--navy-deep) 100%);
+            height: 140px;
+            background: var(--bg);
             position: relative;
+            overflow: hidden;
+        }
+        /* The dark "hill" rising from bottom */
+        .transition-bridge::after {
+            content: '';
+            position: absolute;
+            left: -10%;
+            right: -10%;
+            bottom: 0;
+            height: 100%;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            background: var(--navy-deep);
+        }
+        /* Soft violet glow at the contact edge */
+        .transition-bridge::before {
+            content: '';
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            bottom: 0;
+            height: 80px;
+            z-index: 1;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at 50% 100%, rgba(66,55,196,0.10), transparent 70%);
         }
 
         /* ============================================
@@ -470,13 +494,24 @@
            ============================================ */
         .problem {
             position: relative;
-            padding: 100px 32px 160px;
+            padding: 80px 32px 160px;
             overflow: hidden;
             background:
-                radial-gradient(ellipse 80% 50% at 20% 80%, rgba(239,68,68,0.04) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(66,55,196,0.06) 0%, transparent 50%),
-                linear-gradient(180deg, var(--navy-deep) 0%, #060918 100%);
+                radial-gradient(ellipse 100% 35% at 50% 0%, rgba(66,55,196,0.09) 0%, transparent 70%),
+                radial-gradient(ellipse 70% 50% at 15% 85%, rgba(239,68,68,0.05) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 85% 30%, rgba(116,163,255,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 25% at 50% 50%, rgba(66,55,196,0.03) 0%, transparent 50%),
+                linear-gradient(180deg, var(--navy-deep) 0%, #060918 40%, #050710 100%);
             color: var(--text-on-dark);
+        }
+        /* Subtle dot grid texture */
+        .problem::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
         }
 
         .problem-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
@@ -629,6 +664,7 @@
             .timeline::before { display: none; }
             .problem { padding: 80px 20px 120px; }
             .transition-bridge { height: 100px; }
+            .transition-bridge::before { height: 60px; }
         }
         @media (max-width: 640px) {
             .hero { padding: 100px 16px 80px; min-height: auto; }
@@ -649,6 +685,7 @@
             .timeline { gap: 16px; margin-bottom: 64px; }
             .mc-scenario { font-size: 16px; } .mc-detail { font-size: 13px; }
             .transition-bridge { height: 80px; }
+            .transition-bridge::before { height: 50px; }
         }
         @media (max-width: 380px) {
             .phone-mockup { width: 230px; height: 400px; }
@@ -663,10 +700,32 @@
            SECTION TRANSITIONS — World-class bridges
            ═══════════════════════════════════════════ */
         .bridge-dark-to-light {
-            height: 120px;
-            background: linear-gradient(to bottom, #060918 0%, var(--bg) 100%);
+            height: 140px;
+            background: #050710;
             position: relative;
             overflow: hidden;
+        }
+        /* Light "hill" rising from bottom */
+        .bridge-dark-to-light::after {
+            content: '';
+            position: absolute;
+            left: -10%;
+            right: -10%;
+            bottom: 0;
+            height: 100%;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            background: var(--bg);
+        }
+        .bridge-dark-to-light::before {
+            content: '';
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            bottom: 0;
+            height: 80px;
+            z-index: 1;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at 50% 100%, rgba(66,55,196,0.06), transparent 70%);
         }
         @media (max-width: 960px) {
             .bridge-dark-to-light { height: 100px; }
