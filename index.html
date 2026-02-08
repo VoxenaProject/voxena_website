@@ -1459,12 +1459,15 @@
         .plat-subtitle.visible { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) .2s forwards; }
 
         /* ============================================
-           BENTO — Sticky scroll-stacking cards
+           BENTO — Parallax card-stacking on scroll
+           Cards are always visible. As you scroll,
+           each card slides up and covers the previous
+           one thanks to position:sticky + z-index.
            ============================================ */
         .bento {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 32px;
         }
 
         .bento-card {
@@ -1472,29 +1475,27 @@
             border: 1px solid var(--border);
             border-radius: 22px;
             padding: 32px 28px;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 -2px 20px rgba(14,19,51,0.07), 0 8px 30px rgba(14,19,51,0.09);
             transition: box-shadow 0.4s ease, border-color 0.4s ease;
             overflow: hidden;
             position: sticky;
             will-change: transform;
-            opacity: 0; transform: translateY(30px);
         }
-        .bento-card.visible { animation: fadeUp .8s cubic-bezier(.16,1,.3,1) forwards; }
         .bento-card:hover {
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 -2px 20px rgba(14,19,51,0.07), 0 12px 40px rgba(14,19,51,0.13);
             border-color: var(--border-hover);
         }
 
-        /* Sticky stacking — each card sits slightly lower */
-        .bento--dashboard    { top: 80px; z-index: 1; }
-        .bento--sms          { top: 88px; z-index: 2; }
-        .bento--knowledge    { top: 96px; z-index: 3; }
-        .bento--noshow       { top: 104px; z-index: 4; }
+        /* Sticky stacking — each card covers the previous one */
+        .bento--dashboard    { top: 80px;  z-index: 1; }
+        .bento--sms          { top: 90px;  z-index: 2; }
+        .bento--knowledge    { top: 100px; z-index: 3; }
+        .bento--noshow       { top: 110px; z-index: 4; }
 
         /* Bottom row: 3 compact cards in a grid, also sticky */
         .bento-bottom-row {
             position: sticky;
-            top: 112px;
+            top: 120px;
             z-index: 5;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1504,17 +1505,6 @@
             position: relative;
             top: auto;
         }
-
-        /* Stagger animations for sticky cards */
-        .bento-card.visible:nth-child(2) { animation-delay: .1s; }
-        .bento-card.visible:nth-child(3) { animation-delay: .2s; }
-        .bento-card.visible:nth-child(4) { animation-delay: .3s; }
-        /* Bottom row: parent gets .visible, children animate via parent */
-        .bento-bottom-row.visible .bento-card {
-            animation: fadeUp .8s cubic-bezier(.16,1,.3,1) forwards;
-        }
-        .bento-bottom-row.visible .bento-card:nth-child(2) { animation-delay: .1s; }
-        .bento-bottom-row.visible .bento-card:nth-child(3) { animation-delay: .2s; }
 
         /* ── Card content system ── */
         .bc-icon {
@@ -1795,6 +1785,7 @@
                 top: auto !important;
                 padding: 24px 20px;
                 border-radius: 18px;
+                box-shadow: var(--shadow-md);
             }
             .bento-bottom-row {
                 position: relative !important;
@@ -3383,7 +3374,7 @@
             <div class="bento">
 
                 <!-- ── 1. DASHBOARD (large) ── -->
-                <div class="bento-card bento--dashboard" data-reveal>
+                <div class="bento-card bento--dashboard">
                     <div class="bc-icon bc-icon--violet">
                         <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
                     </div>
@@ -3450,7 +3441,7 @@
                 </div>
 
                 <!-- ── 2. SMS (medium) ── -->
-                <div class="bento-card bento--sms" data-reveal>
+                <div class="bento-card bento--sms">
                     <div class="bc-icon bc-icon--green">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
@@ -3477,7 +3468,7 @@
                 </div>
 
                 <!-- ── 3. KNOWLEDGE (medium) ── -->
-                <div class="bento-card bento--knowledge" data-reveal>
+                <div class="bento-card bento--knowledge">
                     <div class="bc-icon bc-icon--blue">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.5"/><path d="M8 7h8M8 11h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
                     </div>
@@ -3506,7 +3497,7 @@
                 </div>
 
                 <!-- ── 4. ANTI NO-SHOW (large) ── -->
-                <div class="bento-card bento--noshow" data-reveal>
+                <div class="bento-card bento--noshow">
                     <div class="bc-icon bc-icon--amber">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                     </div>
@@ -3561,7 +3552,7 @@
                 </div>
 
                 <!-- ── Bottom row: 3 compact feature cards ── -->
-                <div class="bento-bottom-row" data-reveal>
+                <div class="bento-bottom-row">
                     <div class="bento-card bento--questions">
                         <div class="bc-icon bc-icon--violet">
                             <svg viewBox="0 0 24 24" fill="none"><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.5" fill="currentColor" stroke="currentColor" stroke-width="1"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
