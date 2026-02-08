@@ -185,11 +185,11 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             padding: 18px 40px;
             display: flex; align-items: center; justify-content: space-between;
-            background: rgba(250, 251, 254, 0.75);
-            backdrop-filter: blur(24px) saturate(1.2);
-            -webkit-backdrop-filter: blur(24px) saturate(1.2);
+            background: rgba(250, 251, 254, 0.85);
+            backdrop-filter: blur(12px) saturate(1.1);
+            -webkit-backdrop-filter: blur(12px) saturate(1.1);
             border-bottom: 1px solid rgba(66, 55, 196, 0.05);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: padding 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
         }
         .nav.scrolled {
             padding: 12px 40px;
@@ -245,10 +245,10 @@
         }
 
         /* Orbs — contained within section overflow:hidden */
-        .hero-orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; animation: orbFloat 25s ease-in-out infinite; will-change: transform; }
-        .hero-orb--1 { width: 700px; height: 700px; background: radial-gradient(circle, var(--blue), transparent 70%); top: -250px; right: -150px; opacity: 0.12; }
-        .hero-orb--2 { width: 600px; height: 600px; background: radial-gradient(circle, var(--violet), transparent 70%); bottom: -200px; left: -150px; opacity: 0.1; animation-delay: -8s; }
-        .hero-orb--3 { width: 400px; height: 400px; background: radial-gradient(circle, #a7f3d0, transparent 70%); top: 40%; left: 5%; opacity: 0.06; animation-delay: -16s; }
+        .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; animation: orbFloat 25s ease-in-out infinite; }
+        .hero-orb--1 { width: 700px; height: 700px; background: radial-gradient(circle, var(--blue), transparent 40%); top: -250px; right: -150px; opacity: 0.10; }
+        .hero-orb--2 { width: 600px; height: 600px; background: radial-gradient(circle, var(--violet), transparent 40%); bottom: -200px; left: -150px; opacity: 0.08; animation-delay: -8s; }
+        .hero-orb--3 { width: 400px; height: 400px; background: radial-gradient(circle, #a7f3d0, transparent 40%); top: 40%; left: 5%; opacity: 0.05; animation-delay: -16s; }
 
         @keyframes orbFloat {
             0%, 100% { transform: translate(0, 0) scale(1); }
@@ -382,8 +382,8 @@
         .call-timer { font-size: 13px; color: var(--green); font-weight: 600; margin-bottom: 16px; font-variant-numeric: tabular-nums; }
 
         .waveform-container { display: flex; align-items: center; justify-content: center; gap: 2.5px; height: 44px; margin-bottom: 14px; }
-        .wave-bar { width: 3px; border-radius: 3px; background: linear-gradient(180deg, var(--blue) 0%, var(--violet) 100%); animation: waveAnim 1.2s ease-in-out infinite; }
-        @keyframes waveAnim { 0%, 100% { height: 6px; opacity: 0.3; } 50% { height: var(--h, 36px); opacity: 0.9; } }
+        .wave-bar { width: 3px; height: var(--h, 36px); border-radius: 3px; background: linear-gradient(180deg, var(--blue) 0%, var(--violet) 100%); animation: waveAnim 1.2s ease-in-out infinite; transform-origin: center; }
+        @keyframes waveAnim { 0%, 100% { transform: scaleY(0.17); opacity: 0.3; } 50% { transform: scaleY(1); opacity: 0.9; } }
 
         .call-transcript { width: 100%; padding: 0 2px; margin-bottom: 10px; }
         .transcript-bubble { padding: 8px 11px; border-radius: 12px; font-size: 10.5px; line-height: 1.45; max-width: 92%; opacity: 0; animation: bubbleIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
@@ -407,9 +407,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; border-radius: 50px; letter-spacing: -0.2px;
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 20px rgba(26,154,90,0.3);
-            animation: ctaPulse 3s ease-in-out infinite;
         }
-        @keyframes ctaPulse { 0%,100% { box-shadow: 0 4px 20px rgba(26,154,90,0.3); } 50% { box-shadow: 0 4px 30px rgba(26,154,90,0.45), 0 0 0 6px rgba(26,154,90,0.06); } }
         .phone-cta-link:hover { transform: translateY(-2px) scale(1.02); }
         .phone-cta-link svg { width: 16px; height: 16px; }
         .phone-cta-hint { margin-top: 10px; font-size: 12px; color: var(--text-muted); font-weight: 500; }
@@ -462,26 +460,19 @@
            Smooth gradient bridge
            ============================================ */
         .transition-bridge {
-            height: 200px;
+            height: 280px;
             background: linear-gradient(
                 180deg,
                 var(--bg) 0%,
-                #e8eaf4 15%,
-                #b8bdd4 30%,
-                #6b729a 50%,
-                #2c3162 70%,
-                var(--navy) 85%,
+                #ecedf5 12%,
+                #c8cbe0 28%,
+                #7e84ad 45%,
+                #3d4275 60%,
+                #1a1f4a 75%,
+                var(--navy) 88%,
                 var(--navy-deep) 100%
             );
             position: relative;
-        }
-        /* Atmospheric orb bleeding through */
-        .transition-bridge::before {
-            content: '';
-            position: absolute; bottom: 0; left: 20%; right: 40%;
-            height: 100%;
-            background: radial-gradient(ellipse at center bottom, rgba(66,55,196,0.08), transparent 60%);
-            pointer-events: none;
         }
 
         /* ============================================
@@ -647,7 +638,7 @@
             .mc-impact-label { margin-bottom: 0; } .mc-impact-amount { font-size: 28px; margin-bottom: 0; } .mc-impact-desc { display: none; }
             .timeline::before { display: none; }
             .problem { padding: 80px 20px 120px; }
-            .transition-bridge { height: 140px; }
+            .transition-bridge { height: 180px; }
         }
         @media (max-width: 640px) {
             .hero { padding: 100px 16px 80px; min-height: auto; }
@@ -667,7 +658,7 @@
             .problem-title { letter-spacing: -1.5px; }
             .timeline { gap: 16px; margin-bottom: 64px; }
             .mc-scenario { font-size: 16px; } .mc-detail { font-size: 13px; }
-            .transition-bridge { height: 80px; }
+            .transition-bridge { height: 120px; }
         }
         @media (max-width: 380px) {
             .phone-mockup { width: 230px; height: 400px; }
@@ -682,25 +673,19 @@
            SECTION TRANSITIONS — World-class bridges
            ═══════════════════════════════════════════ */
         .bridge-dark-to-light {
-            height: 200px;
+            height: 280px;
             background: linear-gradient(to bottom,
-                #060918 0%, #0E1333 8%, #1a1f4a 20%,
-                #353a6e 35%, #6a6f9e 50%, #a3a6c4 65%,
-                #cdd0e0 78%, #e6e8f2 88%, var(--bg) 100%);
+                #060918 0%, var(--navy-deep) 12%, var(--navy) 25%,
+                #1a1f4a 40%, #3d4275 55%, #7e84ad 68%,
+                #c8cbe0 82%, #ecedf5 92%, var(--bg) 100%);
             position: relative;
             overflow: hidden;
         }
         @media (max-width: 960px) {
-            .bridge-dark-to-light { height: 120px; }
+            .bridge-dark-to-light { height: 180px; }
         }
         @media (max-width: 640px) {
-            .bridge-dark-to-light { height: 80px; }
-        }
-        .bridge-dark-to-light::after {
-            content: '';
-            position: absolute; bottom: 0; left: 0; right: 0;
-            height: 80px;
-            background: linear-gradient(to bottom, transparent, var(--bg));
+            .bridge-dark-to-light { height: 120px; }
         }
 
         /* Footer logo styling */
@@ -711,9 +696,9 @@
 
         /* ═══════ SECTION 3: CALCULATOR ═══════ */
 .calculator-section{position:relative;padding:120px 32px 140px;overflow:hidden;background:var(--bg)}
-        .calc-orb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none}
-        .calc-orb--1{width:500px;height:500px;background:radial-gradient(circle,var(--blue),transparent 70%);top:-100px;right:-100px;opacity:.06}
-        .calc-orb--2{width:400px;height:400px;background:radial-gradient(circle,var(--violet),transparent 70%);bottom:-100px;left:-50px;opacity:.04}
+        .calc-orb{position:absolute;border-radius:50%;pointer-events:none}
+        .calc-orb--1{width:500px;height:500px;background:radial-gradient(circle,var(--blue),transparent 40%);top:-100px;right:-100px;opacity:.05}
+        .calc-orb--2{width:400px;height:400px;background:radial-gradient(circle,var(--violet),transparent 40%);bottom:-100px;left:-50px;opacity:.03}
         .calc-inner{max-width:1140px;margin:0 auto;position:relative;z-index:2}
 
         .calc-header{text-align:center;margin-bottom:64px}
@@ -826,17 +811,16 @@
         .sol-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(140px);
             pointer-events: none;
         }
         .sol-orb--1 {
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(26,154,90,0.07), transparent 70%);
+            background: radial-gradient(circle, rgba(26,154,90,0.05), transparent 40%);
             top: -150px; left: -100px;
         }
         .sol-orb--2 {
             width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(116,163,255,0.05), transparent 70%);
+            background: radial-gradient(circle, rgba(116,163,255,0.04), transparent 40%);
             bottom: 100px; right: -80px;
         }
 
@@ -878,8 +862,8 @@
             animation: pulse-green 2s ease-in-out infinite;
         }
         @keyframes pulse-green {
-            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(26,154,90,0.3); }
-            50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(26,154,90,0); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .sol-title {
@@ -1318,16 +1302,16 @@
 
         .plat-orb {
             position: absolute; border-radius: 50%;
-            filter: blur(140px); pointer-events: none;
+            pointer-events: none;
         }
         .plat-orb--1 {
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(66,55,196,0.06), transparent 70%);
+            background: radial-gradient(circle, rgba(66,55,196,0.04), transparent 40%);
             top: -80px; right: -120px;
         }
         .plat-orb--2 {
             width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(116,163,255,0.04), transparent 70%);
+            background: radial-gradient(circle, rgba(116,163,255,0.03), transparent 40%);
             bottom: -50px; left: -80px;
         }
 
@@ -1738,16 +1722,16 @@
 
         .form-orb {
             position: absolute; border-radius: 50%;
-            filter: blur(140px); pointer-events: none;
+            pointer-events: none;
         }
         .form-orb--1 {
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(66,55,196,0.06), transparent 70%);
+            background: radial-gradient(circle, rgba(66,55,196,0.04), transparent 40%);
             bottom: -200px; right: -150px;
         }
         .form-orb--2 {
             width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(26,154,90,0.04), transparent 70%);
+            background: radial-gradient(circle, rgba(26,154,90,0.03), transparent 40%);
             top: -100px; left: -80px;
         }
 
@@ -1778,11 +1762,7 @@
         .form-eyebrow-dot {
             width: 8px; height: 8px; border-radius: 50%;
             background: var(--green);
-            animation: pulse-g 2s ease-in-out infinite;
-        }
-        @keyframes pulse-g {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(26,154,90,0.3); }
-            50% { box-shadow: 0 0 0 6px rgba(26,154,90,0); }
+            animation: pulse-green 2s ease-in-out infinite;
         }
 
         .form-title {
@@ -2228,9 +2208,9 @@
 
         .faq-orb {
             position: absolute; border-radius: 50%;
-            filter: blur(160px); pointer-events: none;
+            pointer-events: none;
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(66,55,196,0.04), transparent 70%);
+            background: radial-gradient(circle, rgba(66,55,196,0.03), transparent 40%);
             top: -100px; left: 50%;
             transform: translateX(-50%);
         }
@@ -2417,11 +2397,11 @@
 
         .footer-orb {
             position: absolute; border-radius: 50%;
-            filter: blur(180px); pointer-events: none;
+            pointer-events: none;
         }
         .footer-orb--1 {
             width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(66,55,196,0.08), transparent 70%);
+            background: radial-gradient(circle, rgba(66,55,196,0.05), transparent 40%);
             bottom: -100px; right: -80px;
         }
 
@@ -2636,8 +2616,8 @@
 
         /* Smooth reveal animation with spring physics */
         @keyframes revealUp {
-            0% { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(4px); }
-            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         [data-reveal].visible {
             animation: revealUp 0.9s var(--ease-out-expo) forwards;
@@ -2682,9 +2662,9 @@
 
         /* Calculator threshold flash */
         @keyframes thresholdFlash {
-            0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
-            50% { box-shadow: 0 0 40px 8px rgba(239,68,68,0.15); }
-            100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+            0% { outline: 2px solid rgba(239,68,68,0.3); outline-offset: 0; }
+            50% { outline: 2px solid rgba(239,68,68,0.5); outline-offset: 4px; }
+            100% { outline: 2px solid rgba(239,68,68,0); outline-offset: 8px; }
         }
         .calc-results.threshold-exceeded {
             animation: thresholdFlash 0.8s ease-out;
@@ -2700,8 +2680,7 @@
 
         /* Tilt card effect (JS-driven via CSS custom properties) */
         .bento-card, .scenario-card, .feature-card {
-            transition: all 0.4s var(--ease-out-expo);
-            will-change: transform;
+            transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
         }
         .bento-card:hover, .feature-card:hover {
             transform: perspective(800px)
@@ -2711,9 +2690,6 @@
         }
 
         /* Magnetic button effect */
-        .btn-primary, .btn-secondary, .nav-cta, .phone-cta-link, .sol-cta-btn, .calc-cta, .fcb-btn, .form-submit {
-            will-change: transform;
-        }
 
         /* Smooth number counter animation in calculator */
         .result-number {
@@ -2735,40 +2711,22 @@
         .cursor-dot.visible { opacity: 0.6; }
         .cursor-dot.hovering { transform: scale(4); opacity: 0.3; }
 
-        /* Animated gradient line dividers */
         .total-divider {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), var(--blue), rgba(255,255,255,0.15), transparent);
-            background-size: 200% 100%;
-            animation: gradientSlide 3s ease-in-out infinite;
-        }
-        @keyframes gradientSlide {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), var(--blue), rgba(255,255,255,0.12), transparent);
         }
 
         /* Smooth section transitions */
-        section {
-            will-change: auto;
-        }
 
         /* Enhanced card hover glow */
         .scenario-card:hover {
             box-shadow: 0 20px 60px rgba(14,19,51,0.08), 0 0 0 1px rgba(26,154,90,0.08);
         }
 
-        /* Phone call screen glow pulse */
-        @keyframes screenGlow {
-            0%, 100% { box-shadow: inset 0 0 40px rgba(116,163,255,0.03); }
-            50% { box-shadow: inset 0 0 60px rgba(116,163,255,0.06); }
-        }
         .phone-screen {
-            animation: screenGlow 4s ease-in-out infinite;
+            box-shadow: inset 0 0 40px rgba(116,163,255,0.04);
         }
 
-        /* Nav smooth dark-mode transition */
-        .nav {
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* Nav smooth dark-mode transition (handled in main .nav rule) */
         .nav-logo svg g {
             transition: fill 0.6s ease;
         }
@@ -2778,6 +2736,17 @@
         .page-loading .hero-phone-col {
             opacity: 0 !important;
             animation: none !important;
+        }
+
+        /* Respect user preference for reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .hero-orb, .calc-orb, .sol-orb, .plat-orb, .form-orb, .faq-orb, .footer-orb { display: none; }
+            .cursor-dot { display: none; }
         }
     </style>
 </head>
@@ -4027,22 +3996,16 @@
             });
         }
 
-        // Call timer using requestAnimationFrame
+        // Call timer
         const callTimer = document.getElementById('callTimer');
         if (callTimer) {
             let seconds = 154;
-            let lastTick = performance.now();
-            const tickTimer = (now) => {
-                if (now - lastTick >= 1000) {
-                    seconds++;
-                    const m = String(Math.floor(seconds / 60)).padStart(2, '0');
-                    const s = String(seconds % 60).padStart(2, '0');
-                    callTimer.textContent = `${m}:${s}`;
-                    lastTick = now;
-                }
-                requestAnimationFrame(tickTimer);
-            };
-            requestAnimationFrame(tickTimer);
+            setInterval(() => {
+                seconds++;
+                const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+                const s = String(seconds % 60).padStart(2, '0');
+                callTimer.textContent = `${m}:${s}`;
+            }, 1000);
         }
 
         // Floating badges staggered reveal
@@ -4386,33 +4349,37 @@
         if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
             let mouseX = 0, mouseY = 0;
             let dotX = 0, dotY = 0;
+            let cursorRAF = 0;
+            let isAnimating = false;
 
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                cursorDot.classList.add('visible');
-            });
-
-            document.addEventListener('mouseleave', () => {
-                cursorDot.classList.remove('visible');
-            });
-
-            // Interactive elements make cursor grow
-            const interactiveEls = 'a, button, input, select, textarea, .faq-question, .bento-card, .scenario-card, .feature-card';
-            document.querySelectorAll(interactiveEls).forEach(el => {
-                el.addEventListener('mouseenter', () => cursorDot.classList.add('hovering'));
-                el.addEventListener('mouseleave', () => cursorDot.classList.remove('hovering'));
-            });
-
-            // Smooth follow with lerp
             const animateCursor = () => {
                 dotX += (mouseX - dotX) * 0.15;
                 dotY += (mouseY - dotY) * 0.15;
                 cursorDot.style.left = dotX - 4 + 'px';
                 cursorDot.style.top = dotY - 4 + 'px';
-                requestAnimationFrame(animateCursor);
+                // Stop loop when close enough to target
+                if (Math.abs(mouseX - dotX) > 0.5 || Math.abs(mouseY - dotY) > 0.5) {
+                    cursorRAF = requestAnimationFrame(animateCursor);
+                } else {
+                    isAnimating = false;
+                }
             };
-            requestAnimationFrame(animateCursor);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.classList.add('visible');
+                if (!isAnimating) {
+                    isAnimating = true;
+                    cursorRAF = requestAnimationFrame(animateCursor);
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                cursorDot.classList.remove('visible');
+                cancelAnimationFrame(cursorRAF);
+                isAnimating = false;
+            });
         }
 
         // 8b. Tilt effect on cards (desktop only)
