@@ -43,6 +43,7 @@
     <meta property="og:description" content="L'assistant vocal IA qui décroche, prend les réservations et parle 3 langues. Conçu pour les restaurants belges.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://voxena.pro">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='16' y1='0' x2='16' y2='32' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2374a3ff'/%3E%3Cstop offset='.5' stop-color='%234237c4'/%3E%3Cstop offset='1' stop-color='%233e3183'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7' fill='%230E1333'/%3E%3Cpath fill='url(%23g)' d='M20.8 6L16 14.9 11.2 6h9.6zM9.6 9.7l-.2.3v7.3l6.6 5-6.4-12.6zM16 22.3l6.6-5V10l-.2-.3L16 22.3z'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -59,19 +60,33 @@
             --blue: #74a3ff;
             --violet: #4237C4;
             --violet-dark: #3e3183;
+            --violet-light: rgba(66,55,196,0.06);
             --navy: #0E1333;
             --navy-deep: #080b1f;
             --green: #1a9a5a;
+            --green-soft: #34d399;
             --green-light: #e8f8ef;
+            --green-bg: rgba(26,154,90,0.06);
+            --green-border: rgba(26,154,90,0.12);
             --bg: #FAFBFE;
             --text: #1a1a2e;
             --text-light: #6b7280;
+            --text-secondary: #6b7280;
             --text-muted: #9ca3af;
             --white: #ffffff;
             --amber: #f59e0b;
             --amber-light: #fbbf24;
+            --amber-bg: rgba(245,158,11,0.06);
+            --amber-dark: #d97706;
             --red: #ef4444;
             --red-soft: #fca5a5;
+            --red-light: rgba(239,68,68,0.04);
+            --red-dark: #dc2626;
+            --border: rgba(14,19,51,0.06);
+            --border-hover: rgba(14,19,51,0.12);
+            --border-focus: rgba(66,55,196,0.4);
+            --input-bg: #f5f6fa;
+            --shadow-input: 0 0 0 3px rgba(66,55,196,0.08);
             --text-on-dark: rgba(255,255,255,0.92);
             --text-on-dark-secondary: rgba(255,255,255,0.55);
             --text-on-dark-muted: rgba(255,255,255,0.3);
@@ -82,6 +97,8 @@
             --shadow-lg: 0 8px 30px rgba(14,19,51,0.08), 0 2px 8px rgba(14,19,51,0.04);
             --shadow-xl: 0 16px 50px rgba(14,19,51,0.1), 0 4px 16px rgba(14,19,51,0.05);
             --shadow-phone: 0 20px 60px rgba(14,19,51,0.2), 0 8px 24px rgba(14,19,51,0.1);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         html { scroll-behavior: smooth; overflow-x: hidden; }
@@ -103,6 +120,62 @@
             pointer-events: none; z-index: 9999;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             background-size: 512px;
+        }
+
+        /* ============================================
+           ACCESSIBILITY
+           ============================================ */
+        /* Skip to main content */
+        .skip-link {
+            position: fixed; top: -100%; left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: var(--violet);
+            color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px; font-weight: 700;
+            border-radius: 0 0 12px 12px;
+            z-index: 10000;
+            text-decoration: none;
+            transition: top 0.3s ease;
+        }
+        .skip-link:focus {
+            top: 0;
+            outline: 3px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        /* Focus visible styles */
+        :focus-visible {
+            outline: 2px solid var(--violet);
+            outline-offset: 3px;
+        }
+        button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--violet);
+            outline-offset: 3px;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .hero-orb, .calc-orb, .sol-orb, .plat-orb, .form-orb, .faq-orb, .footer-orb {
+                animation: none !important;
+            }
+        }
+
+        /* Scroll progress indicator */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0;
+            width: 0%; height: 3px;
+            background: linear-gradient(90deg, var(--violet), var(--blue), var(--green-soft));
+            z-index: 10001;
+            transition: width 0.1s linear;
+            will-change: width;
         }
 
         /* ============================================
@@ -152,8 +225,11 @@
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 16px rgba(66, 55, 196, 0.3);
             letter-spacing: -0.2px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(66, 55, 196, 0.4); }
+        .nav-cta:active { transform: translateY(0) scale(0.97); }
         .nav-cta svg { width: 16px; height: 16px; }
 
         /* ============================================
@@ -168,8 +244,8 @@
             background: var(--bg);
         }
 
-        /* Orbs */
-        .hero-orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; animation: orbFloat 25s ease-in-out infinite; }
+        /* Orbs — contained within section overflow:hidden */
+        .hero-orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; animation: orbFloat 25s ease-in-out infinite; will-change: transform; }
         .hero-orb--1 { width: 700px; height: 700px; background: radial-gradient(circle, var(--blue), transparent 70%); top: -250px; right: -150px; opacity: 0.12; }
         .hero-orb--2 { width: 600px; height: 600px; background: radial-gradient(circle, var(--violet), transparent 70%); bottom: -200px; left: -150px; opacity: 0.1; animation-delay: -8s; }
         .hero-orb--3 { width: 400px; height: 400px; background: radial-gradient(circle, #a7f3d0, transparent 70%); top: 40%; left: 5%; opacity: 0.06; animation-delay: -16s; }
@@ -243,6 +319,7 @@
         .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); transition: left 0.6s; }
         .btn-primary:hover::before { left: 100%; }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(66, 55, 196, 0.35), inset 0 1px 0 rgba(255,255,255,0.15); }
+        .btn-primary:active { transform: translateY(0) scale(0.97); transition-duration: 0.1s; }
 
         .btn-secondary {
             display: inline-flex; align-items: center; gap: 10px;
@@ -255,6 +332,7 @@
             box-shadow: var(--shadow-sm);
         }
         .btn-secondary:hover { border-color: rgba(66, 55, 196, 0.3); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .btn-secondary:active { transform: translateY(0) scale(0.97); transition-duration: 0.1s; }
 
         .hero-proof { display: flex; align-items: center; gap: 16px; opacity: 0; animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards; }
         .hero-avatars { display: flex; }
@@ -575,9 +653,9 @@
             .hero { padding: 100px 16px 80px; min-height: auto; }
             .hero-title { letter-spacing: -1.5px; }
             .nav { padding: 12px 16px; }
-            .nav-logo svg { height: 36px; }
-            .nav.scrolled .nav-logo svg { height: 30px; }
-            .nav-cta { padding: 9px 18px; font-size: 13px; }
+            .nav-logo svg { height: 34px; }
+            .nav.scrolled .nav-logo svg { height: 28px; }
+            .nav-cta { padding: 9px 16px; font-size: 12px; gap: 6px; }
             .nav-cta svg { display: none; }
             .hero-ctas { flex-direction: column; align-items: stretch; }
             .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
@@ -589,12 +667,13 @@
             .problem-title { letter-spacing: -1.5px; }
             .timeline { gap: 16px; margin-bottom: 64px; }
             .mc-scenario { font-size: 16px; } .mc-detail { font-size: 13px; }
-            .transition-bridge { height: 100px; }
+            .transition-bridge { height: 80px; }
         }
         @media (max-width: 380px) {
             .phone-mockup { width: 230px; height: 400px; }
             .hero-title { font-size: 32px; letter-spacing: -1px; }
             .problem-title { font-size: 30px; letter-spacing: -1px; }
+            .nav-cta { padding: 8px 14px; font-size: 11px; }
         }
     
 
@@ -649,8 +728,9 @@
         .calc-subtitle{font-size:clamp(15px,1.5vw,18px);line-height:1.65;color:var(--text-secondary);max-width:480px;margin:0 auto;opacity:0;transform:translateY(20px)}
         .calc-subtitle.visible{animation:fadeUp .7s cubic-bezier(.16,1,.3,1) .2s forwards}
 
-        .calc-
+        .calc-body{display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;align-items:start;opacity:0;transform:translateY(40px)}
         .calc-body.visible{animation:fadeUp 1s cubic-bezier(.16,1,.3,1) .3s forwards}
+        .calc-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;align-items:start}
 
         /* SLIDERS */
         .calc-sliders{background:var(--white);border:1px solid var(--border);border-radius:24px;padding:40px 36px;box-shadow:var(--shadow-md)}
@@ -713,7 +793,7 @@
         .knockout-text strong{color:var(--navy);font-weight:800}
         .knockout-text .accent{color:var(--green);font-weight:800}
 
-        @media(max-width:960px){.calc-grid{grid-template-columns:1fr}.calc-results{position:static}.calculator-section{padding:80px 20px 100px}}
+        @media(max-width:960px){.calc-body{grid-template-columns:1fr}.calc-results{position:static}.calculator-section{padding:80px 20px 100px}}
         @media(max-width:640px){.calculator-section{padding:64px 16px 80px}.calc-header{margin-bottom:40px}.calc-sliders{padding:28px 22px;border-radius:20px}.calc-results{padding:28px 22px;border-radius:20px}.slider-value{font-size:22px}.calc-title{letter-spacing:-1.5px}}
         @media(max-width:380px){.calc-title{font-size:28px;letter-spacing:-1px}}
 
@@ -2549,9 +2629,169 @@
             .footer-bottom-links { gap: 16px; }
             .fcb-title { letter-spacing: -1px; }
         }
+
+        /* ============================================
+           WORLD-CLASS ENHANCEMENTS
+           ============================================ */
+
+        /* Smooth reveal animation with spring physics */
+        @keyframes revealUp {
+            0% { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        [data-reveal].visible {
+            animation: revealUp 0.9s var(--ease-out-expo) forwards;
+        }
+
+        /* Stagger children reveal */
+        [data-reveal].visible:nth-child(1) { animation-delay: 0s; }
+        [data-reveal].visible:nth-child(2) { animation-delay: 0.08s; }
+        [data-reveal].visible:nth-child(3) { animation-delay: 0.16s; }
+        [data-reveal].visible:nth-child(4) { animation-delay: 0.24s; }
+        [data-reveal].visible:nth-child(5) { animation-delay: 0.32s; }
+
+        /* Odometer counter styles */
+        .odometer-wrap {
+            display: inline-flex;
+            overflow: hidden;
+            line-height: 1;
+        }
+        .odometer-digit {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        .odometer-digit-inner {
+            display: flex;
+            flex-direction: column;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Sequential bubble reveal */
+        .sc-transcript .bubble {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+        }
+        .sc-transcript.bubbles-revealed .bubble:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+        .sc-transcript.bubbles-revealed .bubble:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+        .sc-transcript.bubbles-revealed .bubble:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+        .sc-transcript.bubbles-revealed .bubble:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+        .sc-transcript.bubbles-revealed .bubble:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+        .sc-transcript.bubbles-revealed .bubble:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.75s; }
+
+        /* Calculator threshold flash */
+        @keyframes thresholdFlash {
+            0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
+            50% { box-shadow: 0 0 40px 8px rgba(239,68,68,0.15); }
+            100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+        }
+        .calc-results.threshold-exceeded {
+            animation: thresholdFlash 0.8s ease-out;
+        }
+        .result-annual .result-number.flash {
+            animation: numberPulse 0.5s ease-out;
+        }
+        @keyframes numberPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Tilt card effect (JS-driven via CSS custom properties) */
+        .bento-card, .scenario-card, .feature-card {
+            transition: all 0.4s var(--ease-out-expo);
+            will-change: transform;
+        }
+        .bento-card:hover, .feature-card:hover {
+            transform: perspective(800px)
+                       rotateX(var(--tilt-x, 0deg))
+                       rotateY(var(--tilt-y, 0deg))
+                       translateY(-4px);
+        }
+
+        /* Magnetic button effect */
+        .btn-primary, .btn-secondary, .nav-cta, .phone-cta-link, .sol-cta-btn, .calc-cta, .fcb-btn, .form-submit {
+            will-change: transform;
+        }
+
+        /* Smooth number counter animation in calculator */
+        .result-number {
+            transition: color 0.3s ease;
+        }
+
+        /* Custom cursor dot */
+        .cursor-dot {
+            position: fixed;
+            width: 8px; height: 8px;
+            background: var(--violet);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.15s var(--ease-out-expo);
+            mix-blend-mode: difference;
+        }
+        .cursor-dot.visible { opacity: 0.6; }
+        .cursor-dot.hovering { transform: scale(4); opacity: 0.3; }
+
+        /* Animated gradient line dividers */
+        .total-divider {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), var(--blue), rgba(255,255,255,0.15), transparent);
+            background-size: 200% 100%;
+            animation: gradientSlide 3s ease-in-out infinite;
+        }
+        @keyframes gradientSlide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Smooth section transitions */
+        section {
+            will-change: auto;
+        }
+
+        /* Enhanced card hover glow */
+        .scenario-card:hover {
+            box-shadow: 0 20px 60px rgba(14,19,51,0.08), 0 0 0 1px rgba(26,154,90,0.08);
+        }
+
+        /* Phone call screen glow pulse */
+        @keyframes screenGlow {
+            0%, 100% { box-shadow: inset 0 0 40px rgba(116,163,255,0.03); }
+            50% { box-shadow: inset 0 0 60px rgba(116,163,255,0.06); }
+        }
+        .phone-screen {
+            animation: screenGlow 4s ease-in-out infinite;
+        }
+
+        /* Nav smooth dark-mode transition */
+        .nav {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-logo svg g {
+            transition: fill 0.6s ease;
+        }
+
+        /* Loading state for page */
+        .page-loading .hero-content,
+        .page-loading .hero-phone-col {
+            opacity: 0 !important;
+            animation: none !important;
+        }
     </style>
 </head>
 <body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Scroll progress indicator -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- Custom cursor (desktop only) -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+    <main id="main-content">
 
     <!-- ═══════════════════════════════════════════
          SECTIONS 1-2: HERO + PROBLEM
@@ -2691,10 +2931,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ============================================
-         SCRIPTS
-         ============================================ -->
 
     <!-- ═══════════════════════════════════════════
          TRANSITION: DARK → LIGHT
@@ -3484,10 +3720,6 @@
         </div>
     </section>
 
-    <!-- ============================================
-         SCRIPTS — Validation + HubSpot Submit
-         ============================================ -->
-
     <!-- ═══════════════════════════════════════════
          SECTION 7: FAQ + FOOTER
          ═══════════════════════════════════════════ -->
@@ -3619,6 +3851,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- ============================================
          FOOTER
          ============================================ -->
@@ -3728,6 +3962,7 @@
             <!-- Bottom -->
             <div class="footer-bottom">
                 <span class="footer-copy">&copy; 2025 Voxena. Tous droits réservés.</span>
+                <!-- Year auto-updated by JS -->
                 <div class="footer-bottom-links">
                     <a href="#">Conditions</a>
                     <a href="#">Confidentialité</a>
@@ -3740,294 +3975,290 @@
     </footer>
 
     <!-- ============================================
-         SCRIPTS
+         CONSOLIDATED WORLD-CLASS SCRIPT ENGINE
          ============================================ -->
-
-    <!-- ═══════════════════════════════════════════
-         SCRIPTS (ALL CONSOLIDATED)
-         ═══════════════════════════════════════════ -->
     <script>
-    /* ═══ Hero + Problem ═══ */
-    
-        /* Waveform */
-        !function(){var c=document.querySelector('.waveform-container');
-        [14,26,42,54,34,48,58,30,44,54,38,26,50,58,44,30,48,54,34,44,26,50,38,30,54,44,26,14].forEach(function(v,i){
-            var b=document.createElement('div');b.className='wave-bar';
-            b.style.setProperty('--h',v+'px');b.style.animationDelay=(i*.055)+'s';
-            b.style.animationDuration=(.8+Math.random()*.7)+'s';c.appendChild(b);
-        })}();
+    (() => {
+        'use strict';
 
-        /* Timer */
-        !function(){var t=document.getElementById('callTimer'),s=154;
-        setInterval(function(){s++;t.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},1000)}();
+        /* ============================================
+           1. UNIFIED INTERSECTION OBSERVER
+           One observer for all scroll-reveal elements
+           ============================================ */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                el.classList.add('visible');
 
-        /* Nav scroll + dark mode */
-        !function(){
-            var nav=document.getElementById('mainNav');
-            var problem=document.querySelector('.problem');
-            addEventListener('scroll',function(){
-                nav.classList.toggle('scrolled',scrollY>50);
-                /* Switch nav to dark when problem section is in view */
-                var rect=problem.getBoundingClientRect();
-                nav.classList.toggle('dark-mode', rect.top < 60);
-            },{passive:true});
-        }();
+                // Trigger counters when problem-total becomes visible
+                if (el.classList.contains('problem-total')) startOdometerCounters();
 
-        /* Floating badges */
-        document.querySelectorAll('.floating-badge').forEach(function(b,i){setTimeout(function(){b.classList.add('visible')},1400+i*450)});
-
-        /* Scroll reveal */
-        !function(){
-            var obs=new IntersectionObserver(function(entries){
-                entries.forEach(function(e){
-                    if(e.isIntersecting){
-                        e.target.classList.add('visible');
-                        if(e.target.classList.contains('problem-total')) startCounters();
-                        obs.unobserve(e.target);
+                // Trigger sequential bubble reveals for scenario transcripts
+                if (el.classList.contains('scenario-card')) {
+                    const transcript = el.querySelector('.sc-transcript');
+                    if (transcript) {
+                        setTimeout(() => transcript.classList.add('bubbles-revealed'), 400);
                     }
-                });
-            },{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
-            document.querySelectorAll('[data-reveal]').forEach(function(el){obs.observe(el)});
-        }();
-
-        /* Counters */
-        var countersStarted=false;
-        function startCounters(){
-            if(countersStarted)return;countersStarted=true;
-            animateCounter('counterCalls',0,92,2200,'','');
-            animateCounter('counterRevenue',0,4800,2600,'','€');
-        }
-        function animateCounter(id,start,end,dur,pre,suf){
-            var el=document.getElementById(id);if(!el)return;
-            var range=end-start,t0=null;
-            !function step(ts){
-                if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);
-                var e=1-Math.pow(1-p,4);
-                el.textContent=pre+Math.floor(start+range*e).toLocaleString('fr-BE')+suf;
-                if(p<1)requestAnimationFrame(step);
-            }(performance.now());
-        }
-    
-    </script>
-
-    <script>
-    /* ═══ Calculator ═══ */
-    
-    (function(){
-        var sC=document.getElementById('slider-calls'),sM=document.getElementById('slider-missed'),sT=document.getElementById('slider-ticket'),sR=document.getElementById('slider-resa');
-        var vC=document.getElementById('val-calls'),vM=document.getElementById('val-missed'),vT=document.getElementById('val-ticket'),vR=document.getElementById('val-resa');
-        var rMC=document.getElementById('result-missed-count'),rMo=document.getElementById('result-monthly'),rAn=document.getElementById('result-annual'),rTi=document.getElementById('result-time'),kW=document.getElementById('knockout-weekly');
-
-        function fill(s){var p=((s.value-s.min)/(s.max-s.min))*100;s.style.background='linear-gradient(90deg,#4237C4 0%,#74a3ff '+p+'%,#eef0f5 '+p+'%)'}
-
-        function calc(){
-            var c=+sC.value,m=+sM.value,t=+sT.value,r=+sR.value;
-            vC.textContent=c;vM.textContent=m;vT.textContent=t;vR.textContent=r;
-            var mw=c*(m/100),mr=mw*(r/100),lw=mr*t,lm=Math.round(lw*4.33),ly=Math.round(lm*12),mm=Math.round(mw*4.33);
-            var aw=c*(1-m/100),tm=Math.round(aw*2*4.33),h=Math.floor(tm/60),mn=tm%60;
-            rMC.textContent=mm;rMo.textContent=fmt(lm);rAn.textContent=fmt(ly);rTi.textContent=h+'h'+(mn<10?'0':'')+mn;kW.textContent=fmt(Math.round(lw));
-            fill(sC);fill(sM);fill(sT);fill(sR)
-        }
-        function fmt(n){return n.toLocaleString('fr-BE')+'€'}
-        [sC,sM,sT,sR].forEach(function(s){s.addEventListener('input',calc)});calc();
-
-        var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
-        document.querySelectorAll('[data-reveal]').forEach(function(el){obs.observe(el)});
-    })();
-    
-    </script>
-
-    <script>
-    /* ═══ Solution reveal ═══ */
-    
-    (function(){
-        var obs = new IntersectionObserver(function(entries){
-            entries.forEach(function(e){
-                if(e.isIntersecting){
-                    e.target.classList.add('visible');
-                    obs.unobserve(e.target);
                 }
+
+                revealObserver.unobserve(el);
             });
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('[data-reveal]').forEach(function(el){ obs.observe(el); });
-    })();
-    
-    </script>
 
-    <script>
-    /* ═══ Platform reveal ═══ */
-    
-    (function(){
-        var obs = new IntersectionObserver(function(entries){
-            entries.forEach(function(e){
-                if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+        document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+
+        /* ============================================
+           2. HERO — Waveform, Timer, Badges
+           ============================================ */
+
+        // Waveform bars
+        const waveContainer = document.querySelector('.waveform-container');
+        if (waveContainer) {
+            const heights = [14,26,42,54,34,48,58,30,44,54,38,26,50,58,44,30,48,54,34,44,26,50,38,30,54,44,26,14];
+            heights.forEach((h, i) => {
+                const bar = document.createElement('div');
+                bar.className = 'wave-bar';
+                bar.style.setProperty('--h', h + 'px');
+                bar.style.animationDelay = (i * 0.055) + 's';
+                bar.style.animationDuration = (0.8 + Math.random() * 0.7) + 's';
+                waveContainer.appendChild(bar);
             });
-        }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
-        document.querySelectorAll('[data-reveal]').forEach(function(el){ obs.observe(el); });
-    })();
-    
-    </script>
-
-    <script>
-    /* ═══ Form validation + submit ═══ */
-    
-    (function(){
-        var form = document.getElementById('voxena-form');
-        var btn = document.getElementById('submit-btn');
-        var container = document.getElementById('form-container');
-        var success = document.getElementById('form-success');
-
-        /* ── HubSpot Configuration ── */
-        /* Replace these with your actual HubSpot portal ID and form GUID */
-        var HUBSPOT_PORTAL_ID = 'YOUR_PORTAL_ID';
-        var HUBSPOT_FORM_GUID = 'YOUR_FORM_GUID';
-
-        /* ── Validation ── */
-        function validate() {
-            var valid = true;
-            var fields = [
-                { id: 'firstname', err: 'err-firstname', check: function(v){ return v.trim().length > 0; } },
-                { id: 'lastname', err: 'err-lastname', check: function(v){ return v.trim().length > 0; } },
-                { id: 'restaurant', err: 'err-restaurant', check: function(v){ return v.trim().length > 0; } },
-                { id: 'email', err: 'err-email', check: function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); } },
-                { id: 'phone', err: 'err-phone', check: function(v){ return v.replace(/\D/g,'').length >= 8; } },
-            ];
-
-            fields.forEach(function(f){
-                var input = document.getElementById(f.id);
-                var errEl = document.getElementById(f.err);
-                var val = input.value;
-
-                if(!f.check(val)){
-                    input.classList.add('error');
-                    errEl.classList.add('show');
-                    valid = false;
-                } else {
-                    input.classList.remove('error');
-                    errEl.classList.remove('show');
-                }
-            });
-
-            return valid;
         }
 
-        /* ── Clear errors on input ── */
-        document.querySelectorAll('.field-input, .field-textarea').forEach(function(el){
-            el.addEventListener('input', function(){
-                this.classList.remove('error');
-                var errEl = this.parentElement.querySelector('.field-error') ||
-                            this.parentElement.parentElement.querySelector('.field-error');
-                if(errEl) errEl.classList.remove('show');
-            });
+        // Call timer using requestAnimationFrame
+        const callTimer = document.getElementById('callTimer');
+        if (callTimer) {
+            let seconds = 154;
+            let lastTick = performance.now();
+            const tickTimer = (now) => {
+                if (now - lastTick >= 1000) {
+                    seconds++;
+                    const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+                    const s = String(seconds % 60).padStart(2, '0');
+                    callTimer.textContent = `${m}:${s}`;
+                    lastTick = now;
+                }
+                requestAnimationFrame(tickTimer);
+            };
+            requestAnimationFrame(tickTimer);
+        }
+
+        // Floating badges staggered reveal
+        document.querySelectorAll('.floating-badge').forEach((badge, i) => {
+            setTimeout(() => badge.classList.add('visible'), 1400 + i * 450);
         });
 
-        /* ── Submit ── */
-        form.addEventListener('submit', function(e){
-            e.preventDefault();
 
-            if(!validate()) return;
+        /* ============================================
+           3. NAV — Scroll, Dark Mode, Progress
+           ============================================ */
+        const nav = document.getElementById('mainNav');
+        const problemSection = document.querySelector('.problem');
+        const scrollProgressEl = document.getElementById('scrollProgress');
+        let ticking = false;
 
-            /* Loading state */
-            btn.classList.add('form-submit--loading');
+        const handleScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const sy = window.scrollY;
 
-            /* Collect data */
-            var phone = document.getElementById('phone').value.replace(/\D/g,'');
-            if(!phone.startsWith('32')) phone = '32' + phone;
-            phone = '+' + phone;
+                // Nav scroll state
+                nav.classList.toggle('scrolled', sy > 50);
 
-            var data = {
-                fields: [
-                    { name: 'firstname', value: document.getElementById('firstname').value.trim() },
-                    { name: 'lastname', value: document.getElementById('lastname').value.trim() },
-                    { name: 'company', value: document.getElementById('restaurant').value.trim() },
-                    { name: 'email', value: document.getElementById('email').value.trim() },
-                    { name: 'phone', value: phone },
-                    { name: 'city', value: document.getElementById('city').value.trim() },
-                    { name: 'message', value: document.getElementById('message').value.trim() },
-                ],
-                context: {
-                    pageUri: window.location.href,
-                    pageName: 'VOXENA - Landing Page'
+                // Dark mode for problem section
+                if (problemSection) {
+                    const rect = problemSection.getBoundingClientRect();
+                    nav.classList.toggle('dark-mode', rect.top < 60 && rect.bottom > 60);
+                }
+
+                // Scroll progress bar
+                if (scrollProgressEl) {
+                    const docH = document.documentElement.scrollHeight - window.innerHeight;
+                    const pct = docH > 0 ? (sy / docH) * 100 : 0;
+                    scrollProgressEl.style.width = pct + '%';
+                }
+
+                ticking = false;
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Init on load
+
+
+        /* ============================================
+           4. ODOMETER-STYLE COUNTERS
+           Smooth digit-by-digit animation
+           ============================================ */
+        let countersStarted = false;
+
+        function startOdometerCounters() {
+            if (countersStarted) return;
+            countersStarted = true;
+            animateOdometer('counterCalls', 0, 92, 2400, '', '');
+            animateOdometer('counterRevenue', 0, 4800, 2800, '', '€');
+        }
+
+        function animateOdometer(id, start, end, duration, prefix, suffix) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const range = end - start;
+            let startTime = null;
+
+            const step = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+
+                // Spring-like easing: overshoot then settle
+                const eased = progress < 1
+                    ? 1 - Math.pow(1 - progress, 4) + Math.sin(progress * Math.PI) * 0.02 * (1 - progress)
+                    : 1;
+
+                const current = Math.floor(start + range * eased);
+                el.textContent = prefix + current.toLocaleString('fr-BE') + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.textContent = prefix + end.toLocaleString('fr-BE') + suffix;
                 }
             };
-
-            /* Add covers if selected */
-            var covers = document.getElementById('covers').value;
-            if(covers) {
-                data.fields.push({ name: 'vx_size', value: covers });
-            }
-
-            /* ── POST to HubSpot Forms API ── */
-            var url = 'https://api.hsforms.com/submissions/v3/integration/submit/'
-                      + HUBSPOT_PORTAL_ID + '/' + HUBSPOT_FORM_GUID;
-
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            })
-            .then(function(res){
-                if(res.ok || res.status === 200){
-                    showSuccess();
-                } else {
-                    /* Fallback: still show success to not block UX */
-                    /* Error logged for debugging */
-                    console.error('HubSpot submit error:', res.status);
-                    showSuccess();
-                }
-            })
-            .catch(function(err){
-                console.error('Network error:', err);
-                /* Show success anyway — form data can be recovered via fallback */
-                showSuccess();
-            });
-        });
-
-        function showSuccess(){
-            btn.classList.remove('form-submit--loading');
-            container.style.display = 'none';
-            success.classList.add('active');
-
-            /* Scroll to success message */
-            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            requestAnimationFrame(step);
         }
 
-        /* ── Scroll reveal ── */
-        var obs = new IntersectionObserver(function(entries){
-            entries.forEach(function(e){
-                if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-        document.querySelectorAll('[data-reveal]').forEach(function(el){ obs.observe(el); });
-    })();
-    
-    </script>
 
-    <script>
-    /* ═══ FAQ + Footer ═══ */
-    
-    (function(){
-        /* ── FAQ Accordion ── */
-        document.querySelectorAll('.faq-question').forEach(function(btn){
-            btn.addEventListener('click', function(){
-                var item = this.closest('.faq-item');
-                var answer = item.querySelector('.faq-answer');
-                var inner = answer.querySelector('.faq-answer-inner');
-                var isOpen = item.classList.contains('open');
+        /* ============================================
+           5. CALCULATOR — Interactive + Threshold FX
+           ============================================ */
+        const sliders = {
+            calls: document.getElementById('slider-calls'),
+            missed: document.getElementById('slider-missed'),
+            ticket: document.getElementById('slider-ticket'),
+            resa: document.getElementById('slider-resa')
+        };
+        const valEls = {
+            calls: document.getElementById('val-calls'),
+            missed: document.getElementById('val-missed'),
+            ticket: document.getElementById('val-ticket'),
+            resa: document.getElementById('val-resa')
+        };
+        const results = {
+            missedCount: document.getElementById('result-missed-count'),
+            monthly: document.getElementById('result-monthly'),
+            annual: document.getElementById('result-annual'),
+            time: document.getElementById('result-time'),
+            weekly: document.getElementById('knockout-weekly')
+        };
 
-                /* Close all others */
-                document.querySelectorAll('.faq-item.open').forEach(function(openItem){
-                    if(openItem !== item){
+        let prevAnnual = 0;
+        const THRESHOLD = 20000;
+
+        function fillSlider(slider) {
+            const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+            slider.style.background = `linear-gradient(90deg, #4237C4 0%, #74a3ff ${pct}%, #eef0f5 ${pct}%)`;
+        }
+
+        function formatEur(n) {
+            return n.toLocaleString('fr-BE') + '€';
+        }
+
+        // Smooth number transition
+        function animateValue(el, from, to, duration = 400) {
+            if (from === to) { el.textContent = formatEur(to); return; }
+            const range = to - from;
+            let start = null;
+            const step = (ts) => {
+                if (!start) start = ts;
+                const p = Math.min((ts - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = formatEur(Math.round(from + range * eased));
+                if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        }
+
+        function calculate() {
+            const c = +sliders.calls.value;
+            const m = +sliders.missed.value;
+            const t = +sliders.ticket.value;
+            const r = +sliders.resa.value;
+
+            // Update display values
+            valEls.calls.textContent = c;
+            valEls.missed.textContent = m;
+            valEls.ticket.textContent = t;
+            valEls.resa.textContent = r;
+
+            // Calculate
+            const missedWeekly = c * (m / 100);
+            const resaMissed = missedWeekly * (r / 100);
+            const lossWeekly = resaMissed * t;
+            const lossMonthly = Math.round(lossWeekly * 4.33);
+            const lossAnnual = Math.round(lossMonthly * 12);
+            const missedMonthly = Math.round(missedWeekly * 4.33);
+
+            // Time saved
+            const answeredWeekly = c * (1 - m / 100);
+            const totalMin = Math.round(answeredWeekly * 2 * 4.33);
+            const hours = Math.floor(totalMin / 60);
+            const mins = totalMin % 60;
+
+            // Update results with smooth transitions
+            results.missedCount.textContent = missedMonthly;
+            animateValue(results.monthly, prevAnnual ? Math.round(prevAnnual / 12) : 0, lossMonthly, 300);
+
+            // Threshold effect: flash when annual exceeds 20K
+            const resultsCard = document.querySelector('.calc-results');
+            const annualEl = results.annual;
+            if (lossAnnual >= THRESHOLD && prevAnnual < THRESHOLD && resultsCard) {
+                resultsCard.classList.remove('threshold-exceeded');
+                void resultsCard.offsetWidth; // Force reflow
+                resultsCard.classList.add('threshold-exceeded');
+                annualEl.classList.add('flash');
+                setTimeout(() => annualEl.classList.remove('flash'), 500);
+            }
+
+            results.annual.textContent = formatEur(lossAnnual);
+            results.time.textContent = `${hours}h${mins < 10 ? '0' : ''}${mins}`;
+            results.weekly.textContent = formatEur(Math.round(lossWeekly));
+
+            prevAnnual = lossAnnual;
+
+            // Fill slider tracks
+            Object.values(sliders).forEach(fillSlider);
+        }
+
+        if (sliders.calls) {
+            Object.values(sliders).forEach(s => s.addEventListener('input', calculate));
+            calculate();
+        }
+
+
+        /* ============================================
+           6. FAQ ACCORDION
+           ============================================ */
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const item = this.closest('.faq-item');
+                const answer = item.querySelector('.faq-answer');
+                const inner = answer.querySelector('.faq-answer-inner');
+                const isOpen = item.classList.contains('open');
+
+                // Close all others
+                document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                    if (openItem !== item) {
                         openItem.classList.remove('open');
-                        var oa = openItem.querySelector('.faq-answer');
-                        oa.style.maxHeight = '0px';
+                        openItem.querySelector('.faq-answer').style.maxHeight = '0px';
                         openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-                        oa.setAttribute('aria-hidden', 'true');
+                        openItem.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
                     }
                 });
 
-                /* Toggle this */
-                if(isOpen){
+                // Toggle current
+                if (isOpen) {
                     item.classList.remove('open');
                     answer.style.maxHeight = '0px';
                     this.setAttribute('aria-expanded', 'false');
@@ -4040,24 +4271,225 @@
                 }
             });
 
-            /* Keyboard support */
-            btn.addEventListener('keydown', function(e){
-                if(e.key === 'Enter' || e.key === ' '){
+            // Keyboard a11y
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    this.click();
+                    btn.click();
                 }
             });
         });
 
-        /* ── Scroll reveal ── */
-        var obs = new IntersectionObserver(function(entries){
-            entries.forEach(function(e){
-                if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+
+        /* ============================================
+           7. FORM VALIDATION + HUBSPOT SUBMIT
+           ============================================ */
+        const form = document.getElementById('voxena-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formContainer = document.getElementById('form-container');
+        const formSuccess = document.getElementById('form-success');
+
+        const HUBSPOT_PORTAL_ID = 'YOUR_PORTAL_ID';
+        const HUBSPOT_FORM_GUID = 'YOUR_FORM_GUID';
+
+        const fieldRules = [
+            { id: 'firstname', err: 'err-firstname', check: v => v.trim().length > 0 },
+            { id: 'lastname', err: 'err-lastname', check: v => v.trim().length > 0 },
+            { id: 'restaurant', err: 'err-restaurant', check: v => v.trim().length > 0 },
+            { id: 'email', err: 'err-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+            { id: 'phone', err: 'err-phone', check: v => v.replace(/\D/g, '').length >= 8 },
+        ];
+
+        function validateForm() {
+            let valid = true;
+            fieldRules.forEach(({ id, err, check }) => {
+                const input = document.getElementById(id);
+                const errEl = document.getElementById(err);
+                if (!check(input.value)) {
+                    input.classList.add('error');
+                    errEl.classList.add('show');
+                    valid = false;
+                } else {
+                    input.classList.remove('error');
+                    errEl.classList.remove('show');
+                }
             });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-        document.querySelectorAll('[data-reveal]').forEach(function(el){ obs.observe(el); });
+            return valid;
+        }
+
+        // Clear errors on input
+        document.querySelectorAll('.field-input, .field-textarea').forEach(el => {
+            el.addEventListener('input', function() {
+                this.classList.remove('error');
+                const errEl = this.parentElement.querySelector('.field-error')
+                           || this.parentElement.parentElement.querySelector('.field-error');
+                if (errEl) errEl.classList.remove('show');
+            });
+        });
+
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!validateForm()) return;
+
+                submitBtn.classList.add('form-submit--loading');
+
+                let phone = document.getElementById('phone').value.replace(/\D/g, '');
+                if (!phone.startsWith('32')) phone = '32' + phone;
+                phone = '+' + phone;
+
+                const data = {
+                    fields: [
+                        { name: 'firstname', value: document.getElementById('firstname').value.trim() },
+                        { name: 'lastname', value: document.getElementById('lastname').value.trim() },
+                        { name: 'company', value: document.getElementById('restaurant').value.trim() },
+                        { name: 'email', value: document.getElementById('email').value.trim() },
+                        { name: 'phone', value: phone },
+                        { name: 'city', value: document.getElementById('city').value.trim() },
+                        { name: 'message', value: document.getElementById('message').value.trim() },
+                    ],
+                    context: {
+                        pageUri: window.location.href,
+                        pageName: 'VOXENA - Landing Page'
+                    }
+                };
+
+                const covers = document.getElementById('covers').value;
+                if (covers) data.fields.push({ name: 'vx_size', value: covers });
+
+                const url = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(() => showSuccess())
+                .catch(() => showSuccess());
+            });
+        }
+
+        function showSuccess() {
+            submitBtn.classList.remove('form-submit--loading');
+            formContainer.style.display = 'none';
+            formSuccess.classList.add('active');
+            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+
+        /* ============================================
+           8. MICRO-INTERACTIONS — World-Class Polish
+           ============================================ */
+
+        // 8a. Custom cursor dot (desktop only)
+        const cursorDot = document.getElementById('cursorDot');
+        if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
+            let mouseX = 0, mouseY = 0;
+            let dotX = 0, dotY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.classList.add('visible');
+            });
+
+            document.addEventListener('mouseleave', () => {
+                cursorDot.classList.remove('visible');
+            });
+
+            // Interactive elements make cursor grow
+            const interactiveEls = 'a, button, input, select, textarea, .faq-question, .bento-card, .scenario-card, .feature-card';
+            document.querySelectorAll(interactiveEls).forEach(el => {
+                el.addEventListener('mouseenter', () => cursorDot.classList.add('hovering'));
+                el.addEventListener('mouseleave', () => cursorDot.classList.remove('hovering'));
+            });
+
+            // Smooth follow with lerp
+            const animateCursor = () => {
+                dotX += (mouseX - dotX) * 0.15;
+                dotY += (mouseY - dotY) * 0.15;
+                cursorDot.style.left = dotX - 4 + 'px';
+                cursorDot.style.top = dotY - 4 + 'px';
+                requestAnimationFrame(animateCursor);
+            };
+            requestAnimationFrame(animateCursor);
+        }
+
+        // 8b. Tilt effect on cards (desktop only)
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.querySelectorAll('.bento-card, .feature-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const tiltX = ((y - centerY) / centerY) * -3;
+                    const tiltY = ((x - centerX) / centerX) * 3;
+                    card.style.setProperty('--tilt-x', tiltX + 'deg');
+                    card.style.setProperty('--tilt-y', tiltY + 'deg');
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.setProperty('--tilt-x', '0deg');
+                    card.style.setProperty('--tilt-y', '0deg');
+                });
+            });
+        }
+
+        // 8c. Magnetic button effect (subtle pull toward cursor)
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.querySelectorAll('.btn-primary, .btn-secondary, .phone-cta-link, .sol-cta-btn, .fcb-btn').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = '';
+                });
+            });
+        }
+
+        // 8d. Parallax orbs on scroll (subtle, performance-optimized)
+        const orbs = document.querySelectorAll('.hero-orb, .calc-orb, .sol-orb, .plat-orb');
+        if (orbs.length && window.matchMedia('(pointer: fine)').matches) {
+            let orbRAF;
+            const parallaxOrbs = () => {
+                const sy = window.scrollY;
+                orbs.forEach((orb, i) => {
+                    const speed = 0.02 + (i % 3) * 0.015;
+                    orb.style.transform = `translateY(${sy * speed}px)`;
+                });
+            };
+            window.addEventListener('scroll', () => {
+                cancelAnimationFrame(orbRAF);
+                orbRAF = requestAnimationFrame(parallaxOrbs);
+            }, { passive: true });
+        }
+
+        // 8e. Smooth anchor scrolling with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offset = nav.offsetHeight + 20;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // 8f. Update copyright year
+        const copyrightEl = document.querySelector('.footer-copy');
+        if (copyrightEl) {
+            const year = new Date().getFullYear();
+            copyrightEl.innerHTML = `&copy; ${year} Voxena. Tous droits réservés.`;
+        }
+
     })();
-    
     </script>
 
 </body>
