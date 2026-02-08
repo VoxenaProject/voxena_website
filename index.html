@@ -460,18 +460,8 @@
            Smooth gradient bridge
            ============================================ */
         .transition-bridge {
-            height: 280px;
-            background: linear-gradient(
-                180deg,
-                var(--bg) 0%,
-                #ecedf5 12%,
-                #c8cbe0 28%,
-                #7e84ad 45%,
-                #3d4275 60%,
-                #1a1f4a 75%,
-                var(--navy) 88%,
-                var(--navy-deep) 100%
-            );
+            height: 120px;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--navy-deep) 100%);
             position: relative;
         }
 
@@ -638,7 +628,7 @@
             .mc-impact-label { margin-bottom: 0; } .mc-impact-amount { font-size: 28px; margin-bottom: 0; } .mc-impact-desc { display: none; }
             .timeline::before { display: none; }
             .problem { padding: 80px 20px 120px; }
-            .transition-bridge { height: 180px; }
+            .transition-bridge { height: 100px; }
         }
         @media (max-width: 640px) {
             .hero { padding: 100px 16px 80px; min-height: auto; }
@@ -658,7 +648,7 @@
             .problem-title { letter-spacing: -1.5px; }
             .timeline { gap: 16px; margin-bottom: 64px; }
             .mc-scenario { font-size: 16px; } .mc-detail { font-size: 13px; }
-            .transition-bridge { height: 120px; }
+            .transition-bridge { height: 80px; }
         }
         @media (max-width: 380px) {
             .phone-mockup { width: 230px; height: 400px; }
@@ -673,19 +663,16 @@
            SECTION TRANSITIONS — World-class bridges
            ═══════════════════════════════════════════ */
         .bridge-dark-to-light {
-            height: 280px;
-            background: linear-gradient(to bottom,
-                #060918 0%, var(--navy-deep) 12%, var(--navy) 25%,
-                #1a1f4a 40%, #3d4275 55%, #7e84ad 68%,
-                #c8cbe0 82%, #ecedf5 92%, var(--bg) 100%);
+            height: 120px;
+            background: linear-gradient(to bottom, #060918 0%, var(--bg) 100%);
             position: relative;
             overflow: hidden;
         }
         @media (max-width: 960px) {
-            .bridge-dark-to-light { height: 180px; }
+            .bridge-dark-to-light { height: 100px; }
         }
         @media (max-width: 640px) {
-            .bridge-dark-to-light { height: 120px; }
+            .bridge-dark-to-light { height: 80px; }
         }
 
         /* Footer logo styling */
