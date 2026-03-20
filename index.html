@@ -4279,9 +4279,12 @@
             anim('.conv-q', 20);
             anim('.conv-input-wrap', 130);
             anim('.conv-cta-row', 240);
-            /* Focus first input */
+            /* Focus first input — seulement si le form est visible à l'écran */
             var inp = step.querySelector('.conv-input');
-            if(inp) setTimeout(function(){ inp.focus(); }, 380);
+            if(inp) setTimeout(function(){
+                var rect = inp.getBoundingClientRect();
+                if(rect.top < window.innerHeight && rect.bottom > 0) inp.focus();
+            }, 380);
         }
 
         /* ── History ── */
