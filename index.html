@@ -704,7 +704,14 @@
            RESPONSIVE
            ============================================ */
         @media (max-width: 900px) {
-            .hero-phone-col { display: none; }
+            .hero-phone-col { display: flex; margin-top: 16px; }
+            .phone-mockup { width: 180px; height: 317px; }
+            .phone-body { border-radius: 28px 28px 0 0; }
+            .phone-screen { border-radius: 22px 22px 0 0; padding: 24px 10px 0; font-size: 85%; }
+            .phone-notch { width: 64px; height: 16px; top: 7px; }
+            .floating-badge { display: none; }
+            .phone-cta-area { display: none; }
+            .hero-guarantee-line { margin-bottom: 24px; }
             .hero-ctas { margin-bottom: 0; }
             .missed-call { grid-template-columns: 1fr; }
             .mc-time-col { flex-direction: row; justify-content: flex-start; padding: 16px 24px; gap: 10px; border-bottom: 1px solid var(--card-border); }
@@ -737,7 +744,9 @@
         @media (max-width: 380px) {
             .hero-title { font-size: 34px; letter-spacing: -1px; }
             .problem-title { font-size: 30px; letter-spacing: -1px; }
-            .nav-cta { padding: 8px 14px; font-size: 12px; }
+            .nav-cta { padding: 7px 12px; font-size: 11px; }
+            .nav-logo svg { display: none; }
+            .phone-mockup { width: 160px; height: 282px; }
         }
     
 
@@ -2699,8 +2708,8 @@
         .demo-progress { flex: 1; height: 3px; background: rgba(255,255,255,0.15); border-radius: 3px; overflow: hidden; cursor: pointer; }
         .demo-progress-bar { height: 100%; width: 0%; background: var(--blue); border-radius: 3px; transition: width .1s linear; }
         .demo-duration { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.40); flex-shrink: 0; }
-        @media (max-width: 900px) { .demo-recordings-grid { grid-template-columns: 1fr; max-width: 480px; } }
-        @media (max-width: 640px) { .demo-recordings-section { padding: 80px 20px; } .demo-card { min-height: 320px; } .demo-card-content { padding: 22px; } }
+        @media (max-width: 900px) { .demo-recordings-grid { grid-template-columns: 1fr; max-width: 100%; } .demo-card { min-height: 300px; } }
+        @media (max-width: 640px) { .demo-recordings-section { padding: 80px 20px; } .demo-card { min-height: 280px; } .demo-card-content { padding: 22px; } }
 
         /* ── FORM SECTION ── */
         .form-section { background: var(--navy-deep); }
