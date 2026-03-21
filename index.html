@@ -729,7 +729,7 @@
             .nav { padding: 12px 16px; }
             .nav-logo svg { height: 36px; }
             .nav.scrolled .nav-logo svg { height: 30px; }
-            .nav-cta { padding: 9px 18px; font-size: 13px; }
+            .nav-cta { padding: 11px 16px; font-size: 13px; }
             .nav-cta svg { display: none; }
             .hero-ctas { flex-direction: column; align-items: stretch; }
             .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
@@ -740,6 +740,7 @@
             .problem-title { letter-spacing: -1.5px; }
             .timeline { gap: 16px; margin-bottom: 64px; }
             .mc-scenario { font-size: 16px; } .mc-detail { font-size: 13px; }
+            .mc-impact-amount { font-size: 22px; }
         }
         @media (max-width: 380px) {
             .hero-title { font-size: 34px; letter-spacing: -1px; }
@@ -747,6 +748,12 @@
             .nav-cta { padding: 7px 12px; font-size: 11px; }
             .nav-logo svg { display: none; }
             .phone-mockup { width: 160px; height: 282px; }
+            .calc-sliders { padding: 22px 16px; }
+            .calc-results { padding: 22px 16px; }
+            .sc-transcript { padding: 14px; }
+            .bubble { font-size: 12px; padding: 8px 10px; }
+            .conv-app-title { font-size: 30px; }
+            .conv-input { font-size: 18px; }
         }
     
 
@@ -2589,7 +2596,7 @@
         .dash-feat-title { font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; font-weight: 700; color: rgba(255,255,255,0.82); margin-bottom: 4px; }
         .dash-feat-desc { font-size: 12px; color: rgba(255,255,255,0.36); line-height: 1.6; }
         @media (max-width: 960px) { .dash-pane.active { grid-template-columns: 1fr; } .dash-sidebar { display: none; } .dash-feats { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 640px) { .dashboard-section { padding: 72px 20px 80px; } .dash-feats { grid-template-columns: 1fr 1fr; gap: 14px; } .dash-stats { gap: 8px; } .dash-sc-num { font-size: 17px; } .dash-floor { grid-template-columns: repeat(4,1fr); } }
+        @media (max-width: 640px) { .dashboard-section { padding: 72px 20px 80px; } .dash-feats { grid-template-columns: 1fr 1fr; gap: 14px; } .dash-stats { gap: 8px; } .dash-sc-num { font-size: 17px; } .dash-floor { grid-template-columns: repeat(3,1fr); } }
         @media (max-width: 480px) { .dash-feats { grid-template-columns: 1fr; } }
         /* Dashboard top bar */
         .dash-topbar { background: rgba(255,255,255,0.025); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: flex-end; gap: 12px; padding: 8px 16px; }
@@ -2946,8 +2953,11 @@
         @media (max-width: 640px) {
             .conv-section { padding: 60px 20px 64px; min-height: 100svh; }
             .conv-q { letter-spacing: -1px; margin-bottom: 32px; }
-            .conv-pill { font-size: 17px; padding: 11px 20px; }
+            .conv-pill { font-size: 15px; padding: 13px 20px; }
+            .conv-input { font-size: clamp(18px, 4.5vw, 26px); }
             .conv-input-row { grid-template-columns: 1fr; gap: 0; }
+            .conv-input-row .conv-input-wrap + .conv-input-wrap { margin-top: 24px; }
+            .conv-app-title { font-size: clamp(32px, 8vw, 52px); letter-spacing: -2px; }
             .conv-progress { margin-bottom: 48px; }
             .conv-faq-grid { grid-template-columns: 1fr; }
             .conv-faq-band { padding: 32px 20px 60px; }
