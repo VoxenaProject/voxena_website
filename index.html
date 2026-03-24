@@ -2676,8 +2676,8 @@
         }
         .demo-recordings-sub.visible { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) .2s forwards; }
         .demo-recordings-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            max-width: 1100px; margin: 64px auto 0;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+            max-width: 780px; margin: 64px auto 0;
         }
         .demo-card {
             position: relative; border-radius: 20px; overflow: hidden;
@@ -3827,7 +3827,7 @@
     <section class="demo-recordings-section" aria-label="Démos audio VOXENA">
         <div class="demo-recordings-eyebrow" data-reveal>Démo sonore&nbsp;·&nbsp;+32 2 601 03 59</div>
         <h2 class="demo-recordings-title" data-reveal>Écoutez VOXENA répondre.</h2>
-        <p class="demo-recordings-sub" data-reveal>3 situations réelles. Appuyez sur play.</p>
+        <p class="demo-recordings-sub" data-reveal>2 situations réelles. Appuyez sur play.</p>
 
         <div class="demo-recordings-grid">
 
@@ -3841,13 +3841,12 @@
                     <span class="demo-card-tag">Scénario 01</span>
                     <h3 class="demo-card-title">Réservation vendredi soir</h3>
                     <p class="demo-card-desc">Un client appelle à 20h pour une table de 4 — VOXENA confirme en moins d'une minute.</p>
-                    <!-- REMPLACER data-src: ajouter "demo-01.mp3" quand l'enregistrement est prêt -->
-                    <div class="demo-audio-player" data-src="">
+                    <div class="demo-audio-player" data-src="assets/demo-reservation-tardive.mp3">
                         <button class="demo-play-btn" aria-label="Écouter scénario 1">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"/></svg>
                         </button>
                         <div class="demo-progress"><div class="demo-progress-bar"></div></div>
-                        <span class="demo-duration">—:——</span>
+                        <span class="demo-duration">1:07</span>
                     </div>
                 </div>
             </div>
@@ -3862,37 +3861,16 @@
                     <span class="demo-card-tag">Scénario 02</span>
                     <h3 class="demo-card-title">Client anglophone</h3>
                     <p class="demo-card-desc">Le client appelle en anglais — VOXENA détecte la langue et bascule automatiquement.</p>
-                    <!-- REMPLACER data-src: ajouter "demo-02.mp3" quand l'enregistrement est prêt -->
-                    <div class="demo-audio-player" data-src="">
+                    <div class="demo-audio-player" data-src="assets/demo-english.mp3">
                         <button class="demo-play-btn" aria-label="Écouter scénario 2">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"/></svg>
                         </button>
                         <div class="demo-progress"><div class="demo-progress-bar"></div></div>
-                        <span class="demo-duration">—:——</span>
+                        <span class="demo-duration">1:45</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 03 -->
-            <div class="demo-card">
-                <video class="demo-card-video" autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/4195/4195-1080.mp4" type="video/mp4">
-                </video>
-                <div class="demo-card-overlay"></div>
-                <div class="demo-card-content">
-                    <span class="demo-card-tag">Scénario 03</span>
-                    <h3 class="demo-card-title">Appel hors service</h3>
-                    <p class="demo-card-desc">Il est 23h, le restaurant est fermé — VOXENA prend le message et envoie une notification.</p>
-                    <!-- REMPLACER data-src: ajouter "demo-03.mp3" quand l'enregistrement est prêt -->
-                    <div class="demo-audio-player" data-src="">
-                        <button class="demo-play-btn" aria-label="Écouter scénario 3">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"/></svg>
-                        </button>
-                        <div class="demo-progress"><div class="demo-progress-bar"></div></div>
-                        <span class="demo-duration">—:——</span>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </section>
