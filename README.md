@@ -6,7 +6,7 @@ Site vitrine et page de capture de leads pour **Voxena**, l'assistant vocal IA p
 
 - **Pure HTML/CSS/JS** — aucun framework, aucun build step
 - **Google Fonts** : Plus Jakarta Sans, Montserrat, JetBrains Mono
-- **Déploiement** : Netlify (static hosting)
+- **Déploiement** : Vercel (static hosting)
 
 ## Structure
 
@@ -50,9 +50,10 @@ voxena-website/
 - [ ] Ajouter favicon
 - [ ] Tester cross-browser (Safari, Firefox, Chrome mobile)
 
-## Déploiement Netlify
+## Déploiement Vercel
 
-1. Connecter ce repo à Netlify
-2. Build command : *(vide — pas de build)*
-3. Publish directory : `.` (racine)
-4. Brancher le domaine `voxena.pro`
+1. Connecter ce repo à Vercel (vercel.com → Import Project)
+2. Framework Preset : **Other**
+3. Build command : *(vide — pas de build)*
+4. Output directory : `.` (racine)
+5. Brancher le domaine `getvoxena.com`

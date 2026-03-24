@@ -8,7 +8,7 @@ The site is a lead-gen page (no pricing displayed). Goal: get restaurant owners 
 - Single `index.html` file (~4000 lines, ~210KB)
 - No framework, no build step, no npm — pure HTML/CSS/JS
 - Google Fonts loaded via CDN
-- Deploy target: Netlify static hosting at voxena.pro
+- Deploy target: Vercel static hosting at getvoxena.com
 
 ## Architecture of index.html
 The file has 3 blocks inside `<head>`:
@@ -63,4 +63,4 @@ Scripts are at the bottom of `<body>`, one `<script>` block per section.
 
 ## Testing
 Just open `index.html` in a browser. No server needed.
-For mobile testing, use Chrome DevTools device emulation or deploy to Netlify preview.
+For mobile testing, use Chrome DevTools device emulation or deploy to Vercel preview.
